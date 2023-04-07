@@ -1,2 +1,2 @@
-# ddd-cool-web-stuff
-Examples of cool things you can do in a webapp
+# Things you didn't know you could do in a webapp
+Originally presented at DDD BY Night on April 26, 2023.
