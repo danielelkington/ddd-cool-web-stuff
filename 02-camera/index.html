@@ -4,6 +4,6 @@
     navigator.mediaDevices.getUserMedia({video: true, audio: false})
     .then(stream => {
         video.srcObject = stream
-        video.onloadedmetadata = () => video.play()
+        video.play()
     })
 </script>
