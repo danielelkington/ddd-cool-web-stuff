@@ -1,7 +1,10 @@
 <video id="video" playsinline/>
 <script>
     const video = document.getElementById('video')
-    navigator.mediaDevices.getUserMedia({video: true, audio: false})
+    navigator.mediaDevices.getUserMedia({
+        video: {facingMode: 'environment'}, // back camera
+        audio: false
+    })
     .then(stream => {
         video.srcObject = stream
         video.play()
