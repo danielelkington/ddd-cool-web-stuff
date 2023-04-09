@@ -9,7 +9,7 @@ exports.handler = async function (event) {
   // Send a notification after 5 seconds
   console.log(event.body)
   setTimeout(() => {
-    webpush.sendNotification(event.body, {title: 'Test Notification'})
+    webpush.sendNotification(event.body, JSON.stringify({title: 'Test Notification'}))
   }, 5000)
   return {
     statusCode: 200
