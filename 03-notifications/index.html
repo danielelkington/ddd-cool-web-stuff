@@ -1,21 +1,21 @@
 <button id="subscribe" onclick="subscribe()">Subscribe to notifications</button>
 <button id="sendNotification" onclick="sendNotificationIn5Seconds()">Send notification in 5 seconds</button>
 <script>
-  const publicKey = 'BEGh6bJSeZ0k6u6WJuj_XC-d5aJSMkqPwQXgx7J43F4ML5XkrFyFUWATi8TxoRD9Yi1pZVN1TRQwJ6JYsDvArqo'
-  let subscription
+  const publicKey = 'BEGh6bJSeZ0k6u6WJuj_XC-d5aJSMkqPwQXgx7J43F4ML5XkrFyFUWATi8TxoRD9Yi1pZVN1TRQwJ6JYsDvArqo';
+  let subscription;
 
-  sendNotification.style.display = 'none'
+  sendNotification.style.display = 'none';
 
-  const registration = await navigator.serviceWorker.register('/service-worker.js')
+  const registration = await navigator.serviceWorker.register('/service-worker.js');
 
   async function subscribe() {
     // Subscribe to notifications
     subscription = await registration.pushManager.subscribe({
       userVisibleOnly: true,
       applicationServerKey: urlBase64ToUint8Array(publicKey)
-    })
-    subscribe.style.display = 'hidden'
-    sendNotification.style.display = 'block'
+    });
+    subscribe.style.display = 'hidden';
+    sendNotification.style.display = 'block';
   }
 
   async function sendNotificationIn5Seconds() {
@@ -25,7 +25,7 @@
       headers: {
         'content-type': 'application/json'
       }
-    })
+    });
   }
 
   // From https://gist.github.com/Klerith/80abd742d726dd587f4bd5d6a0ab26b6
