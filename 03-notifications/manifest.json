@@ -1,0 +1,7 @@
+{
+    "name": "DDD Notifications Demo",
+    "short_name": "Notifications",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#fff"
+}
