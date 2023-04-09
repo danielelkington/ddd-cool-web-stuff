@@ -7,9 +7,9 @@ webpush.setVapidDetails(
 
 exports.handler = async function (event) {
   // Send a notification after 5 seconds
-  console.log(event.body)
   await new Promise(res => setTimeout(res, 5000))
-  webpush.sendNotification(event.body, JSON.stringify({title: 'Test Notification'}))
+  console.log(event.body)
+  webpush.sendNotification(JSON.parse(event.body), JSON.stringify({title: 'Test Notification'}))
   return {
     statusCode: 200
   }
