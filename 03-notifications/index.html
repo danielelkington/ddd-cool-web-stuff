@@ -1,49 +1,61 @@
-<button id="subscribebtn" onclick="subscribe()">Subscribe to notifications</button>
-<button id="sendNotification" onclick="sendNotificationIn5Seconds()">Send notification in 5 seconds</button>
-<script>
-  const publicKey = 'BEGh6bJSeZ0k6u6WJuj_XC-d5aJSMkqPwQXgx7J43F4ML5XkrFyFUWATi8TxoRD9Yi1pZVN1TRQwJ6JYsDvArqo'
-  let registration
-  let subscription
-
-  sendNotification.style.display = 'none';
-
-  (async () => {
-    registration = await navigator.serviceWorker.register('/service-worker.js')
-  })()
-
-  async function subscribe() {
-    // Subscribe to notifications
-    subscription = await registration.pushManager.subscribe({
-      userVisibleOnly: true,
-      applicationServerKey: urlBase64ToUint8Array(publicKey)
-    })
-    subscribebtn.style.display = 'hidden'
-    sendNotification.style.display = 'block'
-  }
-
-  async function sendNotificationIn5Seconds() {
-    await fetch('/.netlify/functions/notify', {
-      method: 'POST',
-      body: JSON.stringify(subscription),
-      headers: {
-        'content-type': 'application/json'
-      }
-    })
-  }
-
-  // From https://gist.github.com/Klerith/80abd742d726dd587f4bd5d6a0ab26b6
-  function urlBase64ToUint8Array(base64String) {
-    var padding = '='.repeat((4 - base64String.length % 4) % 4);
-    var base64 = (base64String + padding)
-        .replace(/\-/g, '+')
-        .replace(/_/g, '/');
-
-    var rawData = window.atob(base64);
-    var outputArray = new Uint8Array(rawData.length);
-
-    for (var i = 0; i < rawData.length; ++i) {
-        outputArray[i] = rawData.charCodeAt(i);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Notifications</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="" />
+  <link rel="icon" href="favicon.png">
+</head>
+<body>
+  <button id="subscribebtn" onclick="subscribe()">Subscribe to notifications</button>
+  <button id="sendNotification" onclick="sendNotificationIn5Seconds()">Send notification in 5 seconds</button>
+  <script>
+    const publicKey = 'BEGh6bJSeZ0k6u6WJuj_XC-d5aJSMkqPwQXgx7J43F4ML5XkrFyFUWATi8TxoRD9Yi1pZVN1TRQwJ6JYsDvArqo'
+    let registration
+    let subscription
+  
+    sendNotification.style.display = 'none';
+  
+    (async () => {
+      registration = await navigator.serviceWorker.register('/service-worker.js')
+    })()
+  
+    async function subscribe() {
+      // Subscribe to notifications
+      subscription = await registration.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: urlBase64ToUint8Array(publicKey)
+      })
+      subscribebtn.style.display = 'hidden'
+      sendNotification.style.display = 'block'
     }
-    return outputArray;
-  }
-</script>
+  
+    async function sendNotificationIn5Seconds() {
+      await fetch('/.netlify/functions/notify', {
+        method: 'POST',
+        body: JSON.stringify(subscription),
+        headers: {
+          'content-type': 'application/json'
+        }
+      })
+    }
+  
+    // From https://gist.github.com/Klerith/80abd742d726dd587f4bd5d6a0ab26b6
+    function urlBase64ToUint8Array(base64String) {
+      var padding = '='.repeat((4 - base64String.length % 4) % 4);
+      var base64 = (base64String + padding)
+          .replace(/\-/g, '+')
+          .replace(/_/g, '/');
+  
+      var rawData = window.atob(base64);
+      var outputArray = new Uint8Array(rawData.length);
+  
+      for (var i = 0; i < rawData.length; ++i) {
+          outputArray[i] = rawData.charCodeAt(i);
+      }
+      return outputArray;
+    }
+  </script>
+</body>
+</html>
