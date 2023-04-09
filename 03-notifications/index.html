@@ -13,11 +13,13 @@
     })
   })()
 
-  await fetch('/.netlify/functions/notify', {
-    method: 'POST',
-    body: JSON.stringify(subscription),
-    headers: {
-      'content-type': 'application/json'
-    }
-  })
+  async function sendNotificationIn5Seconds() {
+    await fetch('/.netlify/functions/notify', {
+      method: 'POST',
+      body: JSON.stringify(subscription),
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+  }
 </script>
