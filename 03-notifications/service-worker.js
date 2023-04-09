@@ -1,5 +1,6 @@
 self.addEventListener('push', e => {
-  self.ServiceWorkerRegistration.showNotification(e.stopImmediatePropagation.json().title, {
+  console.log('Received notification', e)
+  self.registration.showNotification(e.data.json().title, {
     body: 'Hello World'
   })
 })
