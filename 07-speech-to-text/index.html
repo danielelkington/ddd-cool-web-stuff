@@ -1,4 +1,4 @@
-<button onclick="recognize()">Click, then say "North", "South", "East" or "West"!</button>
+<button onclick="recognize()">Click, then talk!</button>
 <div id="results"></div>
 <script>
 const SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
@@ -12,11 +12,9 @@ function recognize() {
 }
 
 recognition.onresult = e => {
-  results.textContent += e.results[0][0].transcript
+  results.textContent += e.results[e.results.length - 1][0].transcript
 }
 
 recognition.onspeechend = () =>
   recognition.stop()
-
-recognition.onerror = e => console.error(e.error)
 </script>
