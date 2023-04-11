@@ -1,0 +1,9 @@
+<button onclick="speak()">Say something</button>
+
+<script>
+function speak() {
+  const s = new SpeechSynthesisUtterance()
+  s.text = 'These aren\'t the droids you\'re looking for.'
+  window.speechSynthesis.speak(s)
+}
+</script>
