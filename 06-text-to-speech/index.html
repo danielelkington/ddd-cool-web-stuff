@@ -2,8 +2,8 @@
 
 <script>
 function speak() {
-  const s = new SpeechSynthesisUtterance()
-  s.text = 'These aren\'t the droids you\'re looking for.'
-  window.speechSynthesis.speak(s)
+  speechSynthesis.speak(
+    new SpeechSynthesisUtterance('These aren\'t the droids you\'re looking for.')
+  )
 }
 </script>
