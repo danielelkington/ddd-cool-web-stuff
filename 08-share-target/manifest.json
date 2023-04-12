@@ -4,6 +4,18 @@
   "start_url": ".",
   "display": "standalone",
   "background_color": "#fff",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
   "share_target": {
     "action": "/",
     "method": "GET",
