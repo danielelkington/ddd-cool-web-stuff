@@ -1,0 +1,7 @@
+<div id="main">Install this webapp to your homescreen. Then try sharing to it!</div>
+<script>
+  const sharedText = new URLSearchParams(window.location.search).get('text')
+  if (sharedText) {
+    main.innerText = 'Shared Text:\n' + sharedText
+  }
+</script>

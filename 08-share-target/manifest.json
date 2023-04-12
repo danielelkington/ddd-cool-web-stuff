@@ -1,0 +1,14 @@
+{
+  "name": "DDD Share Target Demo",
+  "short_name": "Share Target",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#fff",
+  "share_target": {
+    "action": "/",
+    "method": "GET",
+    "params": {
+      "text": "text"
+    }
+  }
+}
