@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="manifest" href="manifest.json" />
+</head>
+<body>
 <div id="main">On Chrome on Android - tap the screen, wait 30 seconds, then accept the prompt to install. Then try sharing to it!</div>
 <script>
   const sharedText = new URLSearchParams(window.location.search).get('text')
@@ -5,3 +11,5 @@
     main.innerText = 'Shared Text:\n' + sharedText
   }
 </script>
+</body>
+</html>
