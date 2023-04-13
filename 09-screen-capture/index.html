@@ -1,5 +1,5 @@
 <button onclick="captureScreen()">Capture Screen</button>
-<video id="video" autoplay/>
+<video id="video" autoplay playsinline/>
 <script>
   async function captureScreen() {
     video.srcObject = await navigator.mediaDevices.getDisplayMedia({
