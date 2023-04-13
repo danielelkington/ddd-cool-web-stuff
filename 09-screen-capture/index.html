@@ -1,0 +1,18 @@
+<button onclick="captureScreen()">Capture Screen</button>
+<video id="video" autoplay/>
+<script>
+  async function captureScreen() {
+    video.srcObject = await navigator.mediaDevices.getDisplayMedia({
+      video: {
+        displaySurface: 'window'
+      },
+      audio: false
+    })
+  }
+</script>
+
+<style>
+  #video {
+    width: 98%;
+  }
+</style>
