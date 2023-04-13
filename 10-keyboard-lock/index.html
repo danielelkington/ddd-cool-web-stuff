@@ -1,0 +1,20 @@
+<button id="btn" onclick="startKeylogger()">Start a fullscreen keylogger!</button>
+<div id="main"/>
+<script>
+  let loggedKeys = ''
+  async function startKeylogger() {
+    btn.style.display = 'none'
+    await document.documentElement.requestFullscreen()
+    await navigator.keyboard.lock()
+    document.addEventListener('keydown', e => {
+      loggedKeys += e.key + ' '
+      main.innerText = loggedKeys
+    })
+  }
+</script>
+
+<style>
+  #video {
+    width: 98%;
+  }
+</style>
