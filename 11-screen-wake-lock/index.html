@@ -1,4 +1,9 @@
-Your device will not go to sleep while this page is open!
+<button id="btn" onclick="doNotSleep()">Do not sleep</button>
+<div id="main" style="display: 'none';">Your device will not go to sleep while this page is open!</div>
 <script>
-  navigator.wakeLock.request('screen')
+  function doNotSleep() {
+    navigator.wakeLock.request('screen')
+    btn.style.display = 'none'
+    main.style.display = 'block'
+  }
 </script>
