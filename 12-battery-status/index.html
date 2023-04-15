@@ -1,0 +1,10 @@
+<div id="main"></div>
+<script>
+  navigator.getBattery().then(battery => {
+    main.innerText = `Battery ${battery.level * 100}%
+${battery.charging ? "Charging..." : "Not charging."}`
+
+    console.log(`Battery ${battery.level * 100}%`)
+    console.log(`Battery is ${battery.charging ? 'charging' : 'not charging'}`)
+  })
+</script>
