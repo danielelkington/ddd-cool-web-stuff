@@ -1,0 +1,28 @@
+<button onclick="showPaymentRequestUI()">Show Payment Request UI</button>
+<script>
+function showPaymentRequestUI() {
+  const request = new PaymentRequest(
+    [
+      {supportedMethods: 'https://google.com/pay'},
+      {supportedMethods: 'https://apple.com/apple-pay'},
+      {supportedMethods: 'https://spay.samsung.com'}
+    ],
+    {
+      id: 'order-123',
+      displayItems: [
+        {
+          label: 'Example item',
+          amount: {currency: 'AUD', value: '5.00'}
+        }
+      ],
+      total: {
+        label: 'Total',
+        amount: {currency: 'AUD', value: '5.00'}
+      }
+    }
+  ).show()
+  .then(response => {
+    response.complete('success') 
+  })
+}
+</script>
