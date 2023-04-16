@@ -1,29 +1,57 @@
 <button onclick="showPaymentRequestUI()">Show Payment Request UI</button>
 <script>
 function showPaymentRequestUI() {
-  const request = new PaymentRequest(
+  new PaymentRequest(
     [
-      {supportedMethods: 'https://google.com/pay'},
-      {supportedMethods: 'https://apple.com/apple-pay', data: {
-        version: 3,
-        merchantIdentifier: "merchant.com.example",
-        merchantCapabilities: ["supports3DS", "supportsCredit", "supportsDebit"],
-        supportedNetworks: ["amex", "discover", "masterCard", "visa"],
-        countryCode: "US",
-    }},
-      {supportedMethods: 'https://spay.samsung.com'}
+      {
+        supportedMethods: 'https://google.com/pay',
+        data: {
+          environment: 'TEST',
+          apiVersion: 2,
+          apiVersionMinor: 0,
+          merchantInfo: {
+            merchantName: 'DDD'
+          },
+          allowedPaymentMethods: [{
+            type: 'CARD',
+            parameters: {
+              allowedAuthMethods: ["PAN_ONLY", "CRYPTOGRAM_3DS"],
+              allowedCardNetworks: ['AMEX', 'MASTERCARD', 'VISA']
+            },
+            tokenizationSpecification: {
+              type: 'PAYMENT_GATEWAY',
+              // Check with your payment gateway on the parameters to pass.
+              // @see {@link https://developers.google.com/pay/api/web/reference/request-objects#gateway}
+              parameters: {
+                'gateway': 'example',
+                'gatewayMerchantId': 'exampleGatewayMerchantId'
+              }
+            }
+          }]
+        }
+      },
+      {
+        supportedMethods: 'https://apple.com/apple-pay',
+        data: {
+          version: 3,
+          merchantIdentifier: "merchant.com.example",
+          merchantCapabilities: ["supports3DS", "supportsCredit", "supportsDebit"],
+          supportedNetworks: ["amex", "masterCard", "visa"],
+          countryCode: "AU",
+        }
+      }
     ],
     {
       id: 'order-123',
       displayItems: [
         {
           label: 'Example item',
-          amount: {currency: 'AUD', value: '5.00'}
+          amount: {currency: 'AUD', value: '0.01'}
         }
       ],
       total: {
         label: 'Total',
-        amount: {currency: 'AUD', value: '5.00'}
+        amount: {currency: 'AUD', value: '0.01'}
       }
     }
   ).show()
