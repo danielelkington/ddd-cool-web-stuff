@@ -1,0 +1,16 @@
+<button id="btn" onclick="detectIdle()">Detect Idle</button>
+<div id="main"></div>
+<script>
+let mainText = ''
+async function detectIdle() {
+  await IdleDetector.requestPermission()
+  const idleDetector = new IdleDetector()
+  idleDetector.addEventListener('change', () => {
+    mainText += `\n${new Date().toISOString()}: ${idleDetector.userState} user, device ${idleDetector.screenState}`
+    main.innerText = mainText
+  })
+  await idleDetector.start({
+    threshold: 60000 // 1 minute (the minimum)
+  })
+}
+</script>
