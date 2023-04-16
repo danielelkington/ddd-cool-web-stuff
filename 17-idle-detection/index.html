@@ -4,6 +4,7 @@
 let mainText = ''
 async function detectIdle() {
   await IdleDetector.requestPermission()
+  btn.style.display = 'none'
   const idleDetector = new IdleDetector()
   idleDetector.addEventListener('change', () => {
     mainText += `\n${new Date().toISOString()}: ${idleDetector.userState} user, device ${idleDetector.screenState}`
