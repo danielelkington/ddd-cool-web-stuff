@@ -1,0 +1,28 @@
+<div id="hello" onclick="transition()">Hello</div>
+<div id="world" style="display: none;">World</div>
+<script>
+function transition() {
+  // updateDOM()
+  document.startViewTransition(() => updateDOM())
+}
+
+function updateDOM() {
+  // hello.style.display = 'none'
+  world.style.display = 'block'
+}
+</script>
+
+<style>
+div {
+  width: 200px;
+  border: 1px solid black;
+}
+
+#hello {
+  background-color: yellow;
+}
+
+#world {
+  background-color: azure;
+}
+</style>
