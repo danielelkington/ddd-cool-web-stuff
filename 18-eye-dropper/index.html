@@ -1,0 +1,9 @@
+<button onclick="chooseColour()">Choose Colour</button>
+<div id="result"/>
+<script>
+  async function chooseColour() {
+    const colorRes = await new EyeDropper().open()
+    result.innerText = colorRes.sRGBHex
+    result.style.backgroundColor = colorRes.sRGBHex
+  }
+</script>
